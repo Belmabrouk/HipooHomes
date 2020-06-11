@@ -10,7 +10,9 @@ import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
+import java.time.Instant;
 import java.util.Base64;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.net.ssl.HttpsURLConnection;
@@ -21,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.demo.entities.User;
@@ -31,6 +35,7 @@ import com.example.demo.service.Impl.GeolocalisationImpl;
 import com.example.demo.service.Impl.IdealistaApiService;
 
 @SpringBootApplication
+@EnableScheduling
 public class HipooHomesApplication {
 
 	@Autowired
@@ -47,6 +52,8 @@ public class HipooHomesApplication {
 	
 	@Autowired
 	PropertyService propertyService;
+	
+	
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -55,6 +62,9 @@ public class HipooHomesApplication {
 		
 
 	}
+	
+	
+	
 
 	  @Bean
 	    BCryptPasswordEncoder getBCPE(){
@@ -71,18 +81,7 @@ public class HipooHomesApplication {
 //		idealistaAPI.getProperties();
 		
 		
-		
-		/*
-		 * Register User
-		 */
-//		User u1 = new User();
-//		u1.setEmail("amine.bl.mabrouk@hotmail.fr");
-//		u1.setFirstName("Ahmed Amine");
-//		u1.setLastName("Belmabrouk");
-//		u1.setPassword("1234");
-//		userService.addUser(u1);
-		System.out.println(userService.getUsersCount());
-		System.out.println(propertyService.getPropertiesCount());
+	
 	}
 
 }

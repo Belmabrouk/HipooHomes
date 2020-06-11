@@ -6,5 +6,4 @@ public interface IdealistaApiService  {
 	
 	public String getAuthToken()throws IOException;
 	public String getProperties()throws IOException;
-
 }

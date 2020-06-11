@@ -11,5 +11,7 @@ public interface PropertyService {
 	public List<Property> GetAll();
 	public long getPropertiesCount();
 	public List<Property> getPropertiesByProvince(Province province);
-	
+	public Property getProperty(String id);
+	public void bookProperty(String username , String propertyId);
+	public List<Property> addFavourite(String username , String propertyId);
 }

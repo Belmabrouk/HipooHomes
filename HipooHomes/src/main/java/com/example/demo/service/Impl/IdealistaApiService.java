@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
@@ -18,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Geolocalisation;
@@ -104,9 +106,6 @@ public class IdealistaApiService implements com.example.demo.service.IdealistaAp
 		URL url = new URL("https://api.idealista.com/3.5/es/search?numPage=1&country=es&maxItems=50&distance=5000&propertyType=homes"
 				+ "&operation=sale&k=yb49umnh9os5wx1ru0fpvb8c182lxklp&center="+g.getLatitude()+","+g.getLongitude());
 
-//		URL url = new URL(
-//				"https://api.idealista.com/3.5/es/search?numPage=1&country=es&maxItems=50&distance=5000&propertyType=homes"
-//						+ "&operation=sale&k=yb49umnh9os5wx1ru0fpvb8c182lxklp" + "&center=43.363129,-5.951843");
 
 		HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 		connection.setRequestProperty("Authorization", "Bearer " + access_token);
@@ -137,12 +136,7 @@ public class IdealistaApiService implements com.example.demo.service.IdealistaAp
 				 Property property = new Property();
 				 property =gson.fromJson(propertyJson.toString(), Property.class);
 				 property.setTitle(propertyJson.getJSONObject("suggestedTexts").getString("title"));
-				 Random rnd = new Random();
-				 property.setAC(rnd.nextBoolean());
-				 property.setGarage(rnd.nextBoolean());
-				 property.setGarden(rnd.nextBoolean());
-				 property.setFittedWardrobe(rnd.nextBoolean());
-				 property.setPool(rnd.nextBoolean());
+				
 				 propertyService.AddProperty(property);
 		
 				
@@ -159,5 +153,7 @@ public class IdealistaApiService implements com.example.demo.service.IdealistaAp
 
 		return null;
 	}
-
+	
+	
+	  
 }

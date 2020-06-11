@@ -1,5 +1,8 @@
 package com.example.demo.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,6 +26,8 @@ public class User {
 	private Boolean selectedProperty;
 	@DBRef
 	private Property property;
+	@DBRef
+	private List<Property> favourites = new ArrayList<Property>();
 	private Role role;
 	
 
