@@ -60,6 +60,7 @@ public class PropertyController {
 	
 	@PutMapping("/addFavourite/{username}/{propertyId}")
 	 ResponseEntity addFavourite(@PathVariable("username") String	username, @PathVariable("propertyId") String propertyId)
+
 	{
 		User currentUser = userRepo.findByUsername(username);
 		boolean favouriteExist = currentUser.getFavourites().stream().anyMatch(item -> propertyId.equals(item.getId()));
@@ -73,9 +74,23 @@ public class PropertyController {
 		 return new ResponseEntity<>( HttpStatus.OK); 
 		}
 	}
+	
+	
 	@GetMapping("/propertyCount")
 	public long getAllPropertyCount(){
+
 		
 		return propertyService.getPropertiesCount();
 	}
+	
+	
+	@GetMapping("/properties/relatedProperties/{propertyId}")
+	List<Property> getRelatedProducts(@PathVariable("propertyId") String propertyId)
+	{
+		
+		
+		return propertyService.getRelatedProperties(propertyId);
+		
+	}
+	
 }

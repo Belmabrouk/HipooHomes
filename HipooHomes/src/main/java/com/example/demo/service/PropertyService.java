@@ -14,4 +14,5 @@ public interface PropertyService {
 	public Property getProperty(String id);
 	public void bookProperty(String username , String propertyId);
 	public List<Property> addFavourite(String username , String propertyId);
+	public List<Property> getRelatedProperties (String propertyId);
 }
